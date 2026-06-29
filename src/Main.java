@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -5,6 +6,8 @@ public class Main {
     private static final List<String> CALC_TYPES = List.of("+", "-", "*", "/");
 
     public static void main(String[] args) {
+        List<Integer> values = new ArrayList<>();
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -25,9 +28,28 @@ public class Main {
             int result = calculate(calcType, num1, num2);
             System.out.println("결과: " + result);
 
+            if (values.size() >= 10) {
+                System.out.println("가장 먼저 연산된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+                String removeCommand = scanner.nextLine();
+
+                if ("remove".equals(removeCommand)) {
+                    values.remove(0);
+                }
+            }
+
+            values.add(result);
+
+            System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            String inquiryCommand = scanner.nextLine();
+            if ("inquiry".equals(inquiryCommand)) {
+                for (Integer value : values) {
+                    System.out.println(value);
+                }
+            }
+
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String command = scanner.nextLine();
-            if (command.equals("exit")) {
+            String exitCommand = scanner.nextLine();
+            if ("exit".equals(exitCommand)) {
                 break;
             }
         }
