@@ -1,20 +1,36 @@
+import operator.AddOperator;
+import operator.DivideOperator;
+import operator.MultiplyOperator;
+import operator.SubtractOperator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArithmeticCalculator extends Calculator<Integer> {
     private static final List<String> CALC_TYPES = List.of("+", "-", "*", "/");
+    private final AddOperator addOperator;
+    private final SubtractOperator subtractOperator;
+    private final MultiplyOperator multiplyOperator;
+    private final DivideOperator divideOperator;
+
+    public ArithmeticCalculator() {
+        this.addOperator = new AddOperator();
+        this.subtractOperator = new SubtractOperator();
+        this.multiplyOperator = new MultiplyOperator();
+        this.divideOperator = new DivideOperator();
+    }
 
     public int calculate(String calcType, int num1, int num2) {
         switch (calcType) {
             case "+":
-                return num1 + num2;
+                return addOperator.operate(num1, num2);
             case "-":
-                return num1 - num2;
+                return subtractOperator.operate(num1, num2);
             case "*":
-                return num1 * num2;
+                return multiplyOperator.operate(num1, num2);
             case "/":
                 validateDivisionByZero(num2);
-                return num1 / num2;
+                return  divideOperator.operate(num1, num2);
             default:
                 throw new IllegalArgumentException("지원하지 않는 연산자입니다.");
         }
