@@ -39,7 +39,6 @@ public class Main {
 
                     System.out.print("사칙연산 기호를 입력하세요: ");
                     String calcType = scanner.nextLine();
-                    arithmeticCalculator.validateCalcType(calcType);
 
                     // 사칙연산 수행
                     Integer result = arithmeticCalculator.calculate(calcType, num1, num2);

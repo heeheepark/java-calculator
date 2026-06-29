@@ -1,23 +1,18 @@
-import operator.AddOperator;
-import operator.DivideOperator;
-import operator.MultiplyOperator;
-import operator.SubtractOperator;
-
-import java.util.ArrayList;
-import java.util.List;
+import operator.*;
 
 public class ArithmeticCalculator extends Calculator<Integer> {
-    private static final List<String> CALC_TYPES = List.of("+", "-", "*", "/");
     private final AddOperator addOperator;
     private final SubtractOperator subtractOperator;
     private final MultiplyOperator multiplyOperator;
     private final DivideOperator divideOperator;
+    private final ModOperator modOperator;
 
     public ArithmeticCalculator() {
         this.addOperator = new AddOperator();
         this.subtractOperator = new SubtractOperator();
         this.multiplyOperator = new MultiplyOperator();
         this.divideOperator = new DivideOperator();
+        this.modOperator = new ModOperator();
     }
 
     public int calculate(String calcType, int num1, int num2) {
@@ -31,6 +26,8 @@ public class ArithmeticCalculator extends Calculator<Integer> {
             case "/":
                 validateDivisionByZero(num2);
                 return  divideOperator.operate(num1, num2);
+            case "%":
+                return modOperator.operate(num1, num2);
             default:
                 throw new IllegalArgumentException("지원하지 않는 연산자입니다.");
         }
@@ -39,12 +36,6 @@ public class ArithmeticCalculator extends Calculator<Integer> {
     private void validateDivisionByZero(int divisor) {
         if (divisor == 0) {
             throw new IllegalArgumentException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-        }
-    }
-
-    public void validateCalcType(String calcType) {
-        if (!CALC_TYPES.contains(calcType)) {
-            throw new IllegalArgumentException("사칙연산 기호는 [+, -, *, /] 중 하나여야 합니다.");
         }
     }
 
