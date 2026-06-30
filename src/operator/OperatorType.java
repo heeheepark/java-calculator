@@ -1,36 +1,41 @@
 package operator;
 
 public enum OperatorType {
+
     ADD {
         @Override
-        public int operate(int num1, int num2) {
-            return num1 + num2;
+        public double operate(double a, double b) {
+            return a + b;
         }
     },
+
     SUBTRACT {
         @Override
-        public int operate(int num1, int num2) {
-            return num1 - num2;
+        public double operate(double a, double b) {
+            return a - b;
         }
     },
+
     MULTIPLY {
         @Override
-        public int operate(int num1, int num2) {
-            return num1 * num2;
+        public double operate(double a, double b) {
+            return a * b;
         }
     },
+
     DIVIDE {
         @Override
-        public int operate(int num1, int num2) {
-            return num1 / num2;
+        public double operate(double a, double b) {
+            return a / b;
         }
     },
+
     MOD {
         @Override
-        public int operate(int num1, int num2) {
-            return num1 % num2;
+        public double operate(double a, double b) {
+            return a % b;
         }
     };
 
-    public abstract int operate(int a, int b);
+    public abstract double operate(double a, double b);
 }

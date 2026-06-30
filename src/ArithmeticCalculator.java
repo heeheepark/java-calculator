@@ -1,34 +1,31 @@
 import operator.OperatorType;
 
-public class ArithmeticCalculator extends Calculator<Integer> {
+public class ArithmeticCalculator<T extends Number> extends Calculator<Double> {
 
-    public int calculate(String calcType, int num1, int num2) {
+    public double calculate(String calcType, T num1, T num2) {
+        double a = num1.doubleValue();
+        double b = num2.doubleValue();
+
         switch (calcType) {
             case "+":
-                return OperatorType.ADD.operate(num1, num2);
+                return OperatorType.ADD.operate(a, b);
             case "-":
-                return OperatorType.SUBTRACT.operate(num1, num2);
+                return OperatorType.SUBTRACT.operate(a, b);
             case "*":
-                return OperatorType.MULTIPLY.operate(num1, num2);
+                return OperatorType.MULTIPLY.operate(a, b);
             case "/":
-                validateDivisionByZero(num2);
-                return OperatorType.DIVIDE.operate(num1, num2);
+                validateDivisionByZero(b);
+                return OperatorType.DIVIDE.operate(a, b);
             case "%":
-                return OperatorType.MOD.operate(num1, num2);
+                return OperatorType.MOD.operate(a, b);
             default:
                 throw new IllegalArgumentException("지원하지 않는 연산자입니다.");
         }
     }
 
-    private void validateDivisionByZero(int divisor) {
-        if (divisor == 0) {
+    private void validateDivisionByZero(double divisor) {
+        if (divisor == 0.0) {
             throw new IllegalArgumentException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-        }
-    }
-
-    public void validateNumber(int num) {
-        if (num < 0) {
-            throw new IllegalArgumentException("숫자는 0 이상의 정수여야 합니다.");
         }
     }
 }

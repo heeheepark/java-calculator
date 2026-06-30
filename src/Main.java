@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        ArithmeticCalculator<Double> arithmeticCalculator = new ArithmeticCalculator<>();
         CircleCalculator circleCalculator = new CircleCalculator();
         Scanner scanner = new Scanner(System.in);
 
@@ -29,19 +29,17 @@ public class Main {
                     break;
                 case 2:
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    int num1 = scanner.nextInt();
-                    arithmeticCalculator.validateNumber(num1);
+                    double num1 = scanner.nextDouble();
 
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    int num2 = scanner.nextInt();
-                    arithmeticCalculator.validateNumber(num2);
+                    double num2 = scanner.nextDouble();
                     scanner.nextLine();
 
                     System.out.print("사칙연산 기호를 입력하세요: ");
                     String calcType = scanner.nextLine();
 
                     // 사칙연산 수행
-                    Integer result = arithmeticCalculator.calculate(calcType, num1, num2);
+                    Double result = arithmeticCalculator.calculate(calcType, num1, num2);
                     System.out.println("결과: " + result);
 
                     if (arithmeticCalculator.getValuesSize() >= 10) {
@@ -58,8 +56,8 @@ public class Main {
                     System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                     String inquiryCommand = scanner.nextLine();
                     if ("inquiry".equals(inquiryCommand)) {
-                        List<Integer> values = arithmeticCalculator.getValues();
-                        for (Integer value : values) {
+                        List<Double> values = arithmeticCalculator.getValues();
+                        for (Double value : values) {
                             System.out.println(value);
                         }
                     }
