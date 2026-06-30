@@ -2,40 +2,31 @@ package operator;
 
 public enum OperatorType {
 
-    ADD {
-        @Override
-        public double operate(double a, double b) {
-            return a + b;
-        }
-    },
+    ADD('+', new AddOperator()),
+    SUBTRACT('-', new SubtractOperator()),
+    MULTIPLY('*', new MultiplyOperator()),
+    DIVIDE('/', new DivideOperator()),
+    MOD('%', new ModOperator());
 
-    SUBTRACT {
-        @Override
-        public double operate(double a, double b) {
-            return a - b;
-        }
-    },
+    private final char calType;
+    private final Operator operator;
 
-    MULTIPLY {
-        @Override
-        public double operate(double a, double b) {
-            return a * b;
-        }
-    },
+    OperatorType(char calType, Operator operator) {
+        this.calType = calType;
+        this.operator = operator;
+    }
 
-    DIVIDE {
-        @Override
-        public double operate(double a, double b) {
-            return a / b;
-        }
-    },
+    public Operator getOperator() {
+        return operator;
+    }
 
-    MOD {
-        @Override
-        public double operate(double a, double b) {
-            return a % b;
+    public static OperatorType from(char calcType) {
+        for (OperatorType type : values()) {
+            if (type.calType == calcType) {
+                return type;
+            }
         }
-    };
 
-    public abstract double operate(double a, double b);
+        throw new IllegalArgumentException("일치하는 타입이 없습니다.");
+    }
 }

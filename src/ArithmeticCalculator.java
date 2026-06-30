@@ -4,25 +4,11 @@ import java.util.List;
 
 public class ArithmeticCalculator<T extends Number> extends Calculator<Double> {
 
-    public double calculate(String calcType, T num1, T num2) {
+    public double calculate(char calcType, T num1, T num2) {
         double a = num1.doubleValue();
         double b = num2.doubleValue();
 
-        switch (calcType) {
-            case "+":
-                return OperatorType.ADD.operate(a, b);
-            case "-":
-                return OperatorType.SUBTRACT.operate(a, b);
-            case "*":
-                return OperatorType.MULTIPLY.operate(a, b);
-            case "/":
-                validateDivisionByZero(b);
-                return OperatorType.DIVIDE.operate(a, b);
-            case "%":
-                return OperatorType.MOD.operate(a, b);
-            default:
-                throw new IllegalArgumentException("지원하지 않는 연산자입니다.");
-        }
+        return OperatorType.from(calcType).getOperator().operate(a, b);
     }
 
     private void validateDivisionByZero(double divisor) {

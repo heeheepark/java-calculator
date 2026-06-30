@@ -36,7 +36,7 @@ public class Main {
                     scanner.nextLine();
 
                     System.out.print("사칙연산 기호를 입력하세요: ");
-                    String calcType = scanner.nextLine();
+                    char calcType = scanner.nextLine().charAt(0);
 
                     // 사칙연산 수행
                     Double result = arithmeticCalculator.calculate(calcType, num1, num2);

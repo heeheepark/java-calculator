@@ -1,5 +1,5 @@
 package operator;
 
 public interface Operator {
-    int operate(int num1, int num2);
+    double operate(double num1, double num2);
 }

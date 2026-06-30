@@ -1,9 +1,9 @@
 package operator;
 
-public class SubtractOperator implements Operator{
+public class SubtractOperator implements Operator {
 
     @Override
-    public int operate(int num1, int num2) {
+    public double operate(double num1, double num2) {
         return num1 - num2;
     }
 }
