@@ -62,6 +62,15 @@ public class Main {
                         }
                     }
 
+                    System.out.println("더 큰 값을 조회하시겠습니까? (yes 입력 시 조회)");
+                    String inputCommand = scanner.nextLine();
+                    if ("yes".equals(inputCommand)) {
+                        System.out.print("숫자를 입력하세요: ");
+                        Double input = scanner.nextDouble();
+                        arithmeticCalculator.printGreater(input);
+                        scanner.nextLine();
+                    }
+
                     break;
                 default:
                     throw new IllegalArgumentException("표시된 항목 중 선택해주세요.");
