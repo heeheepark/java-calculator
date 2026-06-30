@@ -1,33 +1,20 @@
-import operator.*;
+import operator.OperatorType;
 
 public class ArithmeticCalculator extends Calculator<Integer> {
-    private final AddOperator addOperator;
-    private final SubtractOperator subtractOperator;
-    private final MultiplyOperator multiplyOperator;
-    private final DivideOperator divideOperator;
-    private final ModOperator modOperator;
-
-    public ArithmeticCalculator() {
-        this.addOperator = new AddOperator();
-        this.subtractOperator = new SubtractOperator();
-        this.multiplyOperator = new MultiplyOperator();
-        this.divideOperator = new DivideOperator();
-        this.modOperator = new ModOperator();
-    }
 
     public int calculate(String calcType, int num1, int num2) {
         switch (calcType) {
             case "+":
-                return addOperator.operate(num1, num2);
+                return OperatorType.ADD.operate(num1, num2);
             case "-":
-                return subtractOperator.operate(num1, num2);
+                return OperatorType.SUBTRACT.operate(num1, num2);
             case "*":
-                return multiplyOperator.operate(num1, num2);
+                return OperatorType.MULTIPLY.operate(num1, num2);
             case "/":
                 validateDivisionByZero(num2);
-                return  divideOperator.operate(num1, num2);
+                return OperatorType.DIVIDE.operate(num1, num2);
             case "%":
-                return modOperator.operate(num1, num2);
+                return OperatorType.MOD.operate(num1, num2);
             default:
                 throw new IllegalArgumentException("지원하지 않는 연산자입니다.");
         }
